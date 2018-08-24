@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table V05</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="/static/js/main.js"></script>
+<!--===============================================================================================-->
+</head>
+<body ng-app="orgDirectory" ng-controller="orgDirectoryCtrl">
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap">
+				<div class="search">
+				  <input type="text" class="searchTerm" ng-model="query" placeholder="Enter your query">
+				  <button type="submit" class="searchButton" ng-click="search()">
+				    <i class="fa fa-search"></i>
+				 </button>
+				</div>
+				</div>
+			<div class="wrap-table100">
+				<div class="table100 ver1">
+					
+					<div class="wrap-table100-nextcols " style="padding-left: 0px;">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr class="row100 head">
+										<th class="cell100 column2">Employee Name</th>
+										<th class="cell100 column3">Designation</th>
+										<th class="cell100 column4">Department</th>
+										<th class="cell100 column5">Manager Name</th>
+										<th class="cell100 column5"></th>
+										
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr class="row100 body" ng-repeat="record in records">
+										<td class="cell100 column2"><input name="" ng-model="record.name"  ng-disabled="!enabledEdit[$index]"/></td>
+										<td class="cell100 column3" ><input name="" ng-model="record.designation"  ng-disabled="!enabledEdit[$index]"/></td>
+										<td class="cell100 column4"><input name="" ng-model="record.department"  ng-disabled="!enabledEdit[$index]"/></td>
+										<td class="cell100 column5"><input name="" ng-model="record.manager_name"  ng-disabled="!enabledEdit[$index]"/></td>
+										<td class="cell100 column5" ><button class="button-green" ng-click="editEmployee($index)">Edit</button> <button class="button-red" ng-click="delete(record.id)">Delete</button></td>
+										
+									</tr>
+
+									
+
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div>
+					<button class="button-create" id="create_button">CREATE NEW RECORD</button>
+				</div>
+				<div id="myModal" class="modal">
+
+					  <!-- Modal content -->
+					  <div class="modal-content">
+					    <span class="close">&times;</span>
+					    <div style="display: inline-block;">
+					    	
+					    		<label class="label">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>	
+					    	
+					    		<input type="text" class="text" name="" ng-model="name" placeholder="Enter name Here">
+					    		
+					    </div>
+					    <div style="display: inline-block;">
+					    	
+					    		<label class="label">Designation:</label>	
+					    	
+					    		<input type="text" class="text" name="" ng-model="designation" placeholder="Enter Designation">
+					    		
+					    </div>
+					    <div style="display: inline-block;">
+					    	
+					    		<label class="label">Department:</label>	
+					    	
+					    		<input type="text" class="text" name="" ng-model="department" placeholder="Enter Department">
+					    		
+					    </div>
+					    <div style="display: inline-block;">
+					    	<label class="label">Manager</label>
+					    	<div class="styled-select slate">
+							  <select ng-model="manager_name" ng-options="record.name as record.name for record in records">
+        					  </select>
+							</div>	
+					    </div>
+					    <button class="button-green create" ng-click="create_record()">CREATE</button>
+					    
+					  </div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+<!--===============================================================================================-->	
+	<script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/bootstrap/js/popper.js"></script>
+	<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/select2/select2.min.js"></script>
+	
+	
+
+	<script>
+		
+		// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("create_button");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+		
+	</script>
+<!--===============================================================================================-->
+	
+
+</body>
+</html>
